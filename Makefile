@@ -1,4 +1,11 @@
+#!make
 
+SHELL := /bin/sh
+
+include ./.env.${ENV}
+
+env:
+	@env
 
 test:
 	npx playwright test --project=chromium
