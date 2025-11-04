@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { StudentFormPage } from './pages/StudentFormPage';
 
 
 test('test form', async ({ page }) => {
@@ -9,9 +8,10 @@ test('test form', async ({ page }) => {
 
   await page.getByRole('textbox', { name: 'First Name' }).fill('Kong');
   await page.getByRole('textbox', { name: 'Last Name' }).fill('Tata');
-  await page.getByRole('textbox', { name: 'name@example.com' }).fill('kong@nickeleu');
+  await page.getByRole('textbox', { name: 'name@example.com' }).fill('kong@nickel.ee');
   await page.getByText('Male', { exact: true }).check();
   await page.getByRole('textbox', { name: 'Mobile Number' }).fill('0699999999');
+
   await page.locator('#dateOfBirthInput').click();
   await page.getByRole('option', { name: 'Choose Tuesday, November 4th,' }).click();
 

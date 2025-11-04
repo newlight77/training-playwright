@@ -15,8 +15,8 @@ export class StudentResultModalPage {
     readonly success: Locator
 
     constructor(private readonly page: Page) {
-        this.success = page.locator("#example-modal-sizes-title-lg")
-        this.closeButton = page.getByRole('button', { name: 'Close' })
+        this.success = this.page.locator("#example-modal-sizes-title-lg")
+        this.closeButton = this.page.getByRole('button', { name: 'Close' })
     }
 
     getResultElement = () => {
@@ -43,8 +43,8 @@ export class StudentFormPage {
         this.firstnameInput = this.page.getByRole('textbox', { name: 'First Name' })
         this.lastnameInput = this.page.getByRole('textbox', { name: 'Last Name' })
         this.userEmailInput = this.page.getByRole('textbox', { name: 'name@example.com' })
-        this.maleGender = page.getByText('Male', { exact: true })
-        this.phoneNumber = page.getByRole('textbox', { name: 'Mobile Number' })
+        this.maleGender = this.page.getByText('Male', { exact: true })
+        this.phoneNumber = this.page.getByRole('textbox', { name: 'Mobile Number' })
         this.submitButton = this.page.getByRole('button', { name: 'Submit' })
 
     }
@@ -55,7 +55,7 @@ export class StudentFormPage {
         await this.page.getByRole('listitem').getByText('Practice Form').click();
     }
 
-    fillForm = async ({firstname, lastname, email, gender, phoneNumber}: StudentFormType) => {
+    fillAndSubmit = async ({firstname, lastname, email, gender, phoneNumber}: StudentFormType) => {
         await this.firstnameInput.fill(firstname);
         await this.lastnameInput.fill(lastname);
         await this.userEmailInput.fill(email);
@@ -64,9 +64,7 @@ export class StudentFormPage {
             await this.maleGender.check();
 
         await this.phoneNumber.fill(phoneNumber);
-    }
 
-    submit = async () => {
         await this.submitButton.click();
     }
 

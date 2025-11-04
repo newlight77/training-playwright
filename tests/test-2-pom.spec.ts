@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { StudentFormPage, type StudentFormType } from './pages/StudentFormPage';
 
 test('test form with POM', async ({ page }) => {
@@ -17,8 +17,7 @@ test('test form with POM', async ({ page }) => {
   }
 
   // WHEN
-  await studentForm.fillForm(data);
-  await studentForm.submit()
+  await studentForm.fillAndSubmit(data);
 
   // THEN
   const titlesuccess = page.locator("#example-modal-sizes-title-lg")

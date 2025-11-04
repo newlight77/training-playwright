@@ -1,12 +1,11 @@
-import { test, expect, Page } from '@playwright/test';
-import { StudentFormPage, type StudentFormType } from './pages/StudentFormPage';
-import { studentFormFixture } from './fixtures/student.form.fixture';
+import { type StudentFormType } from './pages/StudentFormPage';
+import { studentFormFixture as fixture } from './fixtures/student.form.fixture';
 
-studentFormFixture.test('test form with POM', async ({ studentFormPage, resultModalPage }) => {
+fixture.test('test form with POM', async ({ studentFormPage, resultModalPage }) => {
 
   // GIVEN
   await studentFormPage.goTo();
-  
+
   const data: StudentFormType = {
     firstname : "Kong",
     lastname : "King",
@@ -16,11 +15,10 @@ studentFormFixture.test('test form with POM', async ({ studentFormPage, resultMo
   }
 
   // WHEN
-  await studentFormPage.fillForm(data);
-  await studentFormPage.submit()
+  await studentFormPage.fillAndSubmit(data);
 
   // THEN
-  studentFormFixture.expect(resultModalPage.getResultElement()).toContainText("Thanks for submitting the form");
+  fixture.expect(resultModalPage.getResultElement()).toContainText("Thanks for submitting the form");
 
   await resultModalPage.close();
 
